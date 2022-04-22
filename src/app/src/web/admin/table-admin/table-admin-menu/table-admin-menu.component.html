@@ -1,0 +1,105 @@
+<app-menubar></app-menubar>
+<router-outlet></router-outlet>
+<div style="margin-top: 100px ;">
+<app-tab-menu-admin ></app-tab-menu-admin>
+</div>
+<br><br>
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-info"
+      (click)="showAdmin($event)"></button>
+      <!-- (click)="showDepartment($event)" -->
+    </ng-template>
+    <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+      <i class="pi pi-search"></i>
+      <input type="search" pInputText placeholder="Search"
+        (input)="dt.filterGlobal($any($event).target.value, 'contains')">
+    </span>
+  </p-toolbar>
+
+  <p-table #dt [globalFilterFields]="['departmentId', 'departmentName']" styleClass="p-datatable-striped"
+    [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" dataKey="name">
+    <!-- [value]="dataDepartment" -->
+    <ng-template pTemplate="header">
+
+      <tr>
+
+        <th>Nama</th>
+        <th>Icon</th>
+        <th>Url</th>
+        <th>Program Name</th>
+        <th>Create Date</th>
+        <th>Create By</th>
+        <th>Update Date</th>
+        <th>Update By</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr>
+        <td>{{row.username}}</td>
+        <td>{{row.password}}</td>
+        <td>{{row.nama}}</td>
+        <td>{{row.alamat}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.telp}}</td>
+        <td>{{row.ProgramName}}</td>
+        <td>{{row.CreateBy}}</td>
+        <td>{{row.UpdateBy}}</td>
+
+        <td>
+          <div class="grid-container">
+            <p-button pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil" styleClass="p-button-success" >
+            </p-button>
+            <!-- (onClick)="ShowopenEdit(row)" -->
+          </div>
+        </td>
+        <td>
+          <div class="grid-container">
+            <p-button pTooltip="Delete" tooltipPosition="top" icon="pi pi-trash" styleClass="p-button-warning" >
+              <!-- (onClick)="handleDelete($event)" -->
+            </p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [header]="action == 'add' ? 'Input Menu' : 'Edit Menu'" [(visible)]="displayAdminCreate" [style]="{width: '40vw'}" [baseZIndex]="10000" return>
+  <div class="grid p-fluid">
+    <div class="col-3 md:col-1">
+      <label for="stacked"> Nama </label>
+      <input type="text" pInputText id="User" [(ngModel)]="Nama" required autofocus style="width: 100%;">
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+      <label for="stacked"> Icon </label>
+      <input type="text" pInputText id="Icon" [(ngModel)]="Icon" required autofocus>
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+      <label for="stacked"> Url </label>
+      <input type="text" pInputText id="Url" [(ngModel)]="Url" required autofocus>
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+      <label for="stacked"> Program Name </label>
+      <input type="text" pInputText id="ProgramName" [(ngModel)]="ProgramName" required autofocus>
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+      <label for="stacked"> Create By </label>
+      <input type="text" pInputText id="CreateBy" [(ngModel)]="CreateBy" required autofocus>
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+      <label for="stacked"> Update By </label>
+      <input type="text" pInputText id="UpdateBy" [(ngModel)]="UpdateBy" required autofocus>
+      <h5 class="p-invalid" style="color: red;"></h5>
+
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (onClick)="handleSave($event)" label="SAVE" styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-times" (onClick)="handleReset($event)" label="RESET"></p-button>
+  </ng-template>
+</p-dialog>
