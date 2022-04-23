@@ -1,3 +1,4 @@
+import { ChangePasswordComponent } from './src/web/user/change-password/change-password.component';
 import { UserTableComponent } from './src/web/user/user-table/user-table.component';
 import { MenubarUserComponent } from './src/web/tools/menubar/menubar-user/menubar-user.component';
 import { TableAdminMenuComponent } from './src/web/admin/table-admin/table-admin-menu/table-admin-menu.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'user', component: HomeUserComponent },
   { path: 'homeU', component: MenubarUserComponent },
   { path: 'tableUser', component: UserTableComponent },
+  { path: 'Cpassword', component: ChangePasswordComponent },
 
 
 

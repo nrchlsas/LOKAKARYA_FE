@@ -14,6 +14,7 @@ export class MenubarUserComponent implements OnInit {
     this.items = [
         { label:'Home', icon:'pi pi-fw pi-home', routerLink:'/user' },
         { label:'Table User', icon:'pi pi-fw pi-users',  routerLink:'/tableUser'},
+        { label:'Change Password', icon:'pi pi-fw pi-users',  routerLink:'/Cpassword'},
     ];
 
 
@@ -21,7 +22,6 @@ export class MenubarUserComponent implements OnInit {
 
   logout():void {
     localStorage.clear();
-    window.location.reload();
-    this.Router.navigate(['/hoomeLogin']);
+    this.Router.navigate(['/homeLogin']);
   }
 }

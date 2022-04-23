@@ -15,7 +15,7 @@
     </span>
   </p-toolbar>
 
-  <p-table #dt [globalFilterFields]="['UserName', 'Nama']" styleClass="p-datatable-striped"
+  <p-table #dt [value]="data" [globalFilterFields]="['UserName', 'Nama']" styleClass="p-datatable-striped"
     [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" dataKey="name">
     <!-- [value]="dataDepartment" -->
@@ -23,8 +23,8 @@
 
       <tr>
 
+        <th>UserID</th>
         <th>UserName</th>
-        <th>Password</th>
         <th>Nama</th>
         <th>Alamat</th>
         <th>Email</th>
@@ -32,36 +32,21 @@
         <th>Program Name</th>
         <th>Create By</th>
         <th>Update By</th>
-        <th>Edit</th>
-        <th>Delete</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-row>
       <tr>
+        <td>{{row.userId}}</td>
         <td>{{row.username}}</td>
-        <td>{{row.password}}</td>
-        <td>{{row.nama}}</td>
-        <td>{{row.alamat}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.address}}</td>
         <td>{{row.email}}</td>
-        <td>{{row.telp}}</td>
-        <td>{{row.ProgramName}}</td>
-        <td>{{row.CreateBy}}</td>
-        <td>{{row.UpdateBy}}</td>
+        <td>{{row.phone}}</td>
+        <td>{{row.programName}}</td>
+        <td>{{row.createdBy}}</td>
+        <td>{{row.updatedBy}}</td>
 
-        <td>
-          <div class="grid-container">
-            <p-button pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil" styleClass="p-button-success" >
-            </p-button>
-            <!-- (onClick)="ShowopenEdit(row)" -->
-          </div>
-        </td>
-        <td>
-          <div class="grid-container">
-            <p-button pTooltip="Delete" tooltipPosition="top" icon="pi pi-trash" styleClass="p-button-warning" >
-              <!-- (onClick)="handleDelete($event)" -->
-            </p-button>
-          </div>
-        </td>
+
       </tr>
     </ng-template>
   </p-table>
@@ -71,45 +56,44 @@
   <div class="grid p-fluid">
     <div class="col-3 md:col-1">
       <label for="stacked"> UserName </label>
-      <input type="text" pInputText id="User" [(ngModel)]="User" required autofocus style="width: 100%;">
+      <input type="text" pInputText id="User" [(ngModel)]="row.username" required autofocus style="width: 100%;">
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Password </label>
-      <input type="text" pInputText id="Password" [(ngModel)]="Password" required autofocus>
+      <input type="text" pInputText id="Password" [(ngModel)]="row.password" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Nama </label>
-      <input type="text" pInputText id="Nama" [(ngModel)]="Nama" required autofocus>
+      <input type="text" pInputText id="Nama" [(ngModel)]="row.name" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Alamat </label>
-      <input type="text" pInputText id="Alamat" [(ngModel)]="Alamat" required autofocus>
+      <input type="text" pInputText id="address" [(ngModel)]="row.address" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Email </label>
-      <input type="text" pInputText id="Email" [(ngModel)]="Email" required autofocus>
+      <input type="text" pInputText id="email" [(ngModel)]="row.email" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Telpon </label>
-      <input type="text" pInputText id="Telp" [(ngModel)]="Telp" required autofocus>
+      <input type="text" pInputText id="phone" [(ngModel)]="row.phone" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Program Name </label>
-      <input type="text" pInputText id="ProgramName" [(ngModel)]="ProgramName" required autofocus>
+      <input type="text" pInputText id="programName" [(ngModel)]="row.programName" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Create By </label>
-      <input type="text" pInputText id="CreateBy" [(ngModel)]="CreateBy" required autofocus>
+      <input type="text" pInputText id="createdBy" [(ngModel)]="row.createdBy" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
 
       <label for="stacked"> Update By </label>
-      <input type="text" pInputText id="UpdateBy" [(ngModel)]="UpdateBy" required autofocus>
+      <input type="text" pInputText id="updatedBy" [(ngModel)]="row.updatedBy" required autofocus>
       <h5 class="p-invalid" style="color: red;"></h5>
-
     </div>
   </div>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (onClick)="handleSave($event)" label="SAVE" styleClass="p-button-text"></p-button>
+    <p-button icon="pi pi-check" (onClick)="handlepost($event)" label="SAVE" styleClass="p-button-text"></p-button>
     <p-button icon="pi pi-times" (onClick)="handleReset($event)" label="RESET"></p-button>
   </ng-template>
 </p-dialog>
