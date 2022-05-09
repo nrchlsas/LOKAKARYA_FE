@@ -31,6 +31,8 @@ import {DividerModule} from 'primeng/divider';
 import { FormsModule } from '@angular/forms';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { TableCheckbox } from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 
@@ -85,7 +87,8 @@ import { ChangePasswordComponent } from './src/web/user/change-password/change-p
     FieldsetModule,
     HttpClientModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CheckboxModule
 
 
 

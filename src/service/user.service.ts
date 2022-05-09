@@ -35,8 +35,8 @@ export class UserService {
     });
   }
 
-  postUser(row: any): Observable<any> {
-    return this.http.post<any>(url + `users/post`, row, {
+  postUser(req: any): Observable<any> {
+    return this.http.post<any>(url + `users/post`, req, {
       responseType: 'json',
     });
   }
@@ -45,7 +45,7 @@ export class UserService {
     return this.http.put<any>(url + `users/put`, res, httpOptions);
   }
 
-  deleteUser(id: number): Observable<any> {
+  deleteUser(id: any): Observable<any> {
     return this.http.delete<any>(url + `users/delete?id=${id}`, {
       responseType: 'json',
     });
@@ -54,11 +54,14 @@ export class UserService {
   getUsername(namereq: any): Observable<any> {
     return this.http.get<any>(
       url + `users/findByUsername?username=${namereq}`,
-      { responseType: 'json', }
+      { responseType: 'json' }
     );
   }
 
   getByUsername(username: string): Observable<any> {
-    return this.http.get<any>(url + `users/getByUsername?username=${username}`, httpOptions)
+    return this.http.get<any>(
+      url + `users/getByUsername?username=${username}`,
+      httpOptions
+    );
   }
 }

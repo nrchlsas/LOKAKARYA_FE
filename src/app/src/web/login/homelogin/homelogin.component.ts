@@ -18,7 +18,7 @@ export class HomeloginComponent implements OnInit {
   userData: any;
   userId: any;
 
-  constructor(private Router: Router, private UserService: UserService,private messageService: MessageService) { }
+  constructor(private Router: Router, private UserService: UserService, private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -34,22 +34,22 @@ export class HomeloginComponent implements OnInit {
             this.successLogin()
             localStorage.setItem('token', this.userData.userId)
             localStorage.setItem('name', 'Administrator')
-            this.aceessuser();
+            this.aceess();
             return
           }
-        //     this.wrongUser();
-        //   }
-        // } else {
-        //   this.wrongUser();
-        } else if (this.username =='admin'  &&  this.password == 'admin' ) {
+        } else if (this.username == 'admin' && this.password == 'admin') {
           this.successLoginaadmin()
           localStorage.setItem('token', 'x')
           localStorage.setItem('name', 'Administrator')
-          this.aceess();
+
+          this.aceessuser();
+          return
+        } else if (this.username == '' && this.password == '') {
+          this.empyUser();
           return
         } else {
           this.wrongUser();
-    }
+        }
       }
     );
   }
@@ -60,25 +60,25 @@ export class HomeloginComponent implements OnInit {
   //   this.aceess();
   // }
   aceess(): void {
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
       this.Router.navigate(['/home']);
     }
   }
 
 
   loginadmin(): void {
-      if (this.username =='admin'  &&  this.password == 'admin' ) {
-        this.successLoginaadmin()
-        localStorage.setItem('token', 'x')
-        localStorage.setItem('name', 'Administrator')
-        this.aceessuser();
-        return
-      } else {
-        this.wrongUser();
+    if (this.username == 'admin' && this.password == 'admin') {
+      this.successLoginaadmin()
+      localStorage.setItem('token', 'x')
+      localStorage.setItem('name', 'Administrator')
+      this.aceessuser();
+      return
+    } else {
+      this.wrongUser();
+    }
   }
-}
   aceessuser(): void {
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
       this.Router.navigate(['/homeU']);
     }
   }
@@ -98,19 +98,34 @@ export class HomeloginComponent implements OnInit {
     )
   }
 
+  empyUser() {
+    Swal.fire(
+      'Sorry Input Username And Password',
+      'Thanks'
+    )
+  }
+
   successLogin() {
     Swal.fire(
-      'password Benar anda memiliki token ' +this.userData.userId ,
-      'That thing is still around?',
-      'question'
+      ' Berhasil Login Dengan Username ' + this.userData.username ,
+    )
+  }
+
+  usernameerr() {
+    Swal.fire(
+      'Username Salah'
+    )
+  }
+
+  passworderr() {
+    Swal.fire(
+      'Username Benar, password Salah !!!'
     )
   }
 
   successLoginaadmin() {
     Swal.fire(
       'You Admin',
-      'That thing is still around?',
-      'question'
     )
   }
 

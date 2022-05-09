@@ -47,16 +47,5 @@ export class MenuService {
     });
   }
 
-  getMenuByUserId(id: number): Observable<any> {
-    return this.http.get<any>(url + `menus/getMenuByUserId?id=${id}`, {
-      responseType: 'json',
-    });
-  }
-
-  getActiveMenuByUserId(id: number): Observable<any> {
-    return this.http.get<any>(url + `menus/getActiveMenuByUserId?id=${id}`, {
-      responseType: 'json',
-    });
-  }
 
 }

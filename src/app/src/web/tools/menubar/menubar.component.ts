@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menubar',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./menubar.component.css']
 })
 export class MenubarComponent implements OnInit {
-
+  userData: any;
+  userId: any;
   constructor(private Router: Router) { }
 
   items: MenuItem[] = [];
@@ -24,8 +26,20 @@ export class MenubarComponent implements OnInit {
   }
 
   logout():void {
-    localStorage.clear();
-    // window.location.reload();
-    this.Router.navigate(['/homeLogin']);
+
+    Swal.fire({
+      title: 'Are you sure Logout?',
+      icon: 'warning',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Logout', '', 'success')
+        localStorage.clear();
+        // window.location.reload();
+        this.Router.navigate(['/homeLogin']);
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
   }
 }
