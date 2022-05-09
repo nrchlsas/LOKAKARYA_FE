@@ -245,51 +245,51 @@ export class TableAdminCreateComponent implements OnInit {
   })
   }
 
-  handlepost(event: any) {
-    console.log(this.action,"action");
-    // let date = this.DatePipe.transform(this.HIRE_DATE, 'MM/dd/yyyy');
+  // handlepost(event: any) {
+  //   console.log(this.action,"action");
+  //   // let date = this.DatePipe.transform(this.HIRE_DATE, 'MM/dd/yyyy');
 
-    this.submitted = true;
-    Swal.fire({
-      title: 'Are you sure Add Row?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-    }).then(() => {
-      if (this.action === 'add') {
-        this.UserService.postUser(this.row)
-          .subscribe(
-            data => {
-              if (data && data.status === 200) {
-                console.log(data, 'CREATE');
-                this.submitted = false;
-                this.displayAdminCreate = false;
-                window.location.reload();
-              }
-            },
-            error => {
-              console.log(error, 'ERROR');
-              this.displayAdminCreate = false;
-              window.location.reload();
-            });
-            window.location.reload();
+  //   this.submitted = true;
+  //   Swal.fire({
+  //     title: 'Are you sure Add Row?',
+  //     text: "You won't be able to revert this!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //   }).then(() => {
+  //     if (this.action === 'add') {
+  //       this.UserService.postUser(this.row)
+  //         .subscribe(
+  //           data => {
+  //             if (data && data.status === 200) {
+  //               console.log(data, 'CREATE');
+  //               this.submitted = false;
+  //               this.displayAdminCreate = false;
+  //               window.location.reload();
+  //             }
+  //           },
+  //           error => {
+  //             console.log(error, 'ERROR');
+  //             this.displayAdminCreate = false;
+  //             window.location.reload();
+  //           });
+  //           window.location.reload();
 
-      } else {
-        this.UserService.putUser(
-          this.row
-        ).subscribe(
-          (event: any) => {
-            this.icon = 'success'
-            this.displayAdminCreate = false;
-            window.location.reload();
-      },
-          (err: any) => {
-          }
-        );
-      }
-    });
+  //     } else {
+  //       this.UserService.putUser(
+  //         this.row
+  //       ).subscribe(
+  //         (event: any) => {
+  //           this.icon = 'success'
+  //           this.displayAdminCreate = false;
+  //           window.location.reload();
+  //     },
+  //         (err: any) => {
+  //         }
+  //       );
+  //     }
+  //   });
 
-  }
+  // }
 
   checkUsername() {
     if (this.username.length >= 5) {
@@ -518,6 +518,9 @@ export class TableAdminCreateComponent implements OnInit {
                   }
                 }
               })
+              setInterval(function () {
+                window.location.reload();
+              }, 5000);
               return
             }
           )
@@ -525,7 +528,7 @@ export class TableAdminCreateComponent implements OnInit {
       },
       error: (err) => {}
     })
-    
+
   }
 
   getUsers(){
